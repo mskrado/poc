@@ -1,0 +1,17 @@
+[project]
+name = "agent-fsm-poc"
+version = "0.1.0"
+description = "POC: explicit FSM agent vs naive framework-style loop"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+include = ["agent_fsm*", "agent_naive*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
