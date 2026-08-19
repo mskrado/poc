@@ -1,0 +1,20 @@
+stack: vapi
+enabled: true
+description: Vapi managed cloud voice agent (v1.9.x)
+api_base: https://api.vapi.ai
+assistant_id: ${VAPI_ASSISTANT_ID}
+phone_number_id: ${VAPI_PHONE_NUMBER_ID}
+webhook_events:
+  - speech-end
+  - speech-start
+  - call-end
+pricing:
+  platform: 0.05
+  telephony: 0.02
+  llm: 0.07
+concurrency: 20
+# Article reference p95 / cost / error rate (for mock calibration)
+reference:
+  p95_turn_latency_ms: 380
+  cost_per_minute: 0.14
+  error_rate: 0.031

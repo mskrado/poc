@@ -1,0 +1,19 @@
+stack: retell
+enabled: true
+description: Retell AI managed cloud voice agent (v2.1.x)
+api_base: https://api.retellai.com
+agent_id: ${RETELL_AGENT_ID}
+from_number: ${RETELL_FROM_NUMBER}
+webhook_events:
+  - call_started
+  - call_ended
+  - turn_latency
+pricing:
+  platform: 0.12
+  telephony: 0.03
+  llm: 0.16
+concurrency: 40
+reference:
+  p95_turn_latency_ms: 420
+  cost_per_minute: 0.31
+  error_rate: 0.012

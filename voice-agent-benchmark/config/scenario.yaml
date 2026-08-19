@@ -1,0 +1,35 @@
+name: appointment_confirmation
+description: >
+  Outbound medical appointment confirmation — confirm times, handle rescheduling,
+  and gracefully exit when the callee wants a human agent.
+
+system_prompt: |
+  You are an appointment confirmation assistant calling on behalf of Riverside Clinic.
+  Confirm the patient's appointment date and time. If they need to reschedule, offer
+  the next available slot (Tuesday 2pm or Thursday 10am). If they ask for a human,
+  acknowledge and end the call politely.
+
+patient_behavior:
+  model: gpt-4o-mini
+  default_persona: cooperative
+  personas:
+    cooperative:
+      description: Confirms the appointment without changes.
+    rescheduler:
+      description: Asks to move the appointment to Thursday 10am.
+    confused:
+      description: Mishears the date and asks for clarification twice.
+    wants_human:
+      description: Requests to speak with a real person immediately.
+
+turn_detection:
+  min_silence_ms: 600
+  utterance_end_ms: 1000
+
+metrics:
+  primary: p95_turn_latency_ms
+  cost_basis: per_minute
+
+call_defaults:
+  duration_seconds: 90
+  turns_per_call: 4

@@ -1,0 +1,18 @@
+stack: openai_realtime
+enabled: true
+description: Roll-your-own Twilio + OpenAI Realtime API with custom turn manager
+telephony:
+  provider: twilio
+  from_number: ${TWILIO_FROM_NUMBER}
+realtime:
+  model: gpt-4o-realtime-preview
+  min_silence_duration_ms: 600
+  echo_cancellation: true
+pricing:
+  telephony: 0.03
+  realtime: 0.16
+concurrency: 15
+reference:
+  p95_turn_latency_ms: 520
+  cost_per_minute: 0.19
+  error_rate: 0.039

@@ -1,0 +1,8 @@
+stack: mock
+enabled: true
+description: Dry-run simulator — no API keys, reproduces article-shaped latency profiles
+seed: 42
+reference:
+  p95_turn_latency_ms: 400
+  cost_per_minute: 0.10
+  error_rate: 0.02

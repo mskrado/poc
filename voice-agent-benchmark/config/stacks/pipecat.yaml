@@ -1,0 +1,25 @@
+stack: pipecat
+enabled: true
+description: Pipecat self-hosted pipeline (Daily transport + Deepgram + OpenAI + TTS)
+transport: daily
+stt:
+  provider: deepgram
+  model: nova-2
+llm:
+  provider: openai
+  model: gpt-4o
+tts:
+  provider: openai
+  voice: alloy
+turn_detection:
+  utterance_end_ms: 1000
+pricing:
+  compute: 0.02
+  telephony: 0.02
+  stt: 0.01
+  llm: 0.02
+concurrency: 10
+reference:
+  p95_turn_latency_ms: 610
+  cost_per_minute: 0.07
+  error_rate: 0.044
