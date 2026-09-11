@@ -1,0 +1,25 @@
+# Tiered routing: cheapest/fastest first, escalate on anything short of full success,
+# page a human after the second failure.
+tiers:
+  - browser_use
+  - playwright_mcp
+
+# A partial success still leaves work undone, so it escalates like a failure.
+escalate_on:
+  - partial
+  - fail
+
+human_tier:
+  cost_usd: 4.50
+  minutes: 6.0
+  description: Operator finishes the workflow from the agent's last known state.
+
+# How much task difficulty is shared across frameworks. 0.0 = independent failures
+# (over-optimistic), 1.0 = every framework fails on exactly the same tasks.
+# Calibrated so the default seed lands on the article's 71/29 production split.
+difficulty_correlation: 0.60
+
+# Article's production numbers for the deployed tiered system.
+reference:
+  automated_rate: 0.71
+  human_assisted_rate: 0.29

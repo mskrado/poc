@@ -1,0 +1,24 @@
+# Value pools for the synthetic task runner. Everything here is invented: the names are
+# common surnames, the streets do not resolve, the EINs and card numbers are reserved
+# test values. Nothing in this file should ever be sent to a real service.
+first_names: [Avery, Dana, Ellis, Harper, Ira, Jules, Kai, Lena, Marisol, Noor, Owen, Priya, Quinn, Rowan, Sasha, Tovah]
+last_names: [Alvarez, Boone, Chen, Dvorak, Ellis, Fairbanks, Goode, Hadley, Ibarra, Jain, Kowalski, Lindqvist, Moreau, Nakamura, Okafor, Petrov]
+streets: [Alder Way, Basin Street, Cedar Loop, Dockside Road, Eastgate Avenue, Foundry Lane, Granary Court, Hollis Street]
+cities:
+  - { city: Fairhaven, state: OR, zip: "97086" }
+  - { city: Northbay, state: WA, zip: "98221" }
+  - { city: Millbrook, state: NY, zip: "12545" }
+  - { city: Cedar Falls, state: IA, zip: "50613" }
+  - { city: Rockport, state: TX, zip: "78382" }
+email_domains: [example.com, example.org, example.net]
+companies: [Meridian Logistics, Harbor Analytics, Skylark Freight, Northbay Supply, Lantern Works]
+naics_codes: ["541511", "541611", "484121", "423430", "561499"]
+entity_types: [LLC, S-Corp, Nonprofit]
+# Reserved test card numbers — these never route to a real processor.
+test_cards:
+  - { brand: visa, number: "4111111111111111", cvv: "123" }
+  - { brand: mastercard, number: "5555555555554444", cvv: "456" }
+  - { brand: amex, number: "378282246310005", cvv: "1234" }
+invoice_periods: ["2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09"]
+lead_sources: [webinar, referral, conference, inbound, partner]
+ticket_priorities: [P0, P1, P2, P3]

@@ -1,0 +1,28 @@
+[project]
+name = "browser-agent-benchmark"
+version = "0.1.0"
+description = "POC: 30-workflow browser automation benchmark across Playwright-MCP, Browser-Use, and Computer-Use, with tiered routing"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+live = [
+    "mcp>=1.0",
+    "anthropic>=0.39",
+    "browser-use>=0.1.40",
+    "langchain-openai>=0.2",
+]
+
+[project.scripts]
+browser-benchmark = "browser_benchmark.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["browser_benchmark*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

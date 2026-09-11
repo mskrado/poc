@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Skylark — flight search</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem auto; max-width: 44rem; }
+    .row { display: flex; gap: .75rem; margin-bottom: .75rem; }
+    input, select, button { padding: .5rem; font: inherit; }
+    .result { border: 1px solid #ccc; border-radius: 6px; padding: .75rem; margin: .5rem 0; }
+    .muted { color: #666; font-size: .85em; }
+  </style>
+</head>
+<body>
+  <h1>Skylark</h1>
+  <p class="muted">
+    Failure mode: this page re-renders after every state change and regenerates
+    <code>data-testid</code> attributes. A DOM-based agent that caches a selector before
+    the re-render will not find the same button afterwards.
+  </p>
+
+  <div class="row">
+    <input id="from" data-testid="field-origin" placeholder="From" value="SFO">
+    <input id="to" data-testid="field-destination" placeholder="To" value="JFK">
+    <input id="depart" type="date" data-testid="field-depart">
+    <button id="search" data-testid="btn-search-0">Search</button>
+  </div>
+
+  <div id="results"></div>
+  <div id="confirmation"></div>
+
+  <script>
+    // Every interaction bumps the render generation, which is baked into each testid.
+    let generation = 0;
+    const fares = [
+      { id: "SK118", price: 612, seat: "aisle", depart: "07:10" },
+      { id: "SK204", price: 588, seat: "middle", depart: "11:45" },
+      { id: "SK377", price: 731, seat: "aisle", depart: "18:20" }
+    ];
+
+    function render() {
+      generation += 1;
+      document.getElementById("search").dataset.testid = "btn-search-" + generation;
+      const host = document.getElementById("results");
+      host.innerHTML = fares.map(function (f, i) {
+        return '<div class="result">' +
+          '<strong>' + f.id + '</strong> — $' + f.price + ' — ' + f.seat + ' — departs ' + f.depart +
+          ' <button data-testid="btn-select-' + generation + '-' + i + '" ' +
+          'onclick="select(' + i + ')">Select</button></div>';
+      }).join("");
+    }
+
+    function select(index) {
+      const fare = fares[index];
+      render(); // the re-render that invalidates the button the agent just clicked
+      document.getElementById("confirmation").innerHTML =
+        '<div class="result" data-testid="review-' + generation + '">' +
+        'Review: ' + fare.id + ' at $' + fare.price + '. ' +
+        '<button data-testid="btn-confirm-' + generation + '" onclick="confirmBooking(\'' + fare.id + '\')">' +
+        'Confirm booking</button></div>';
+    }
+
+    function confirmBooking(fareId) {
+      document.getElementById("confirmation").innerHTML =
+        '<div class="result" data-testid="booking-reference">Booking reference: SKY-' +
+        fareId + '-4471</div>';
+    }
+
+    document.getElementById("search").addEventListener("click", render);
+    render();
+  </script>
+</body>
+</html>

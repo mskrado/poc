@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>State filing portal — multi-page form</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem auto; max-width: 44rem; }
+    fieldset { margin-bottom: 1rem; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .fake-select { border: 1px solid #999; padding: .4rem; width: 14rem; cursor: pointer; }
+    .fake-option { padding: .25rem .4rem; }
+    .fake-option:hover { background: #eee; }
+    .overlay-widget { border: 1px dashed #999; padding: .5rem; }
+    .muted { color: #666; font-size: .85em; }
+    input { padding: .4rem; font: inherit; }
+  </style>
+</head>
+<body>
+  <h1>Filing portal</h1>
+  <p class="muted">
+    Failure mode: three pages, a div-based fake select with no ARIA role, and an
+    accessibility overlay that shadows the real inputs. DOM-based agents struggle to
+    identify the widgets; a pixel-based agent just clicks what it sees.
+  </p>
+
+  <div class="page active" id="page-1">
+    <fieldset><legend>Page 1 of 3 — filer</legend>
+      <label>Legal name <input name="legal_name" data-testid="legal-name"></label><br>
+      <label>Tax ID <input name="tax_id" data-testid="tax-id"></label><br>
+      <label>Filing year <input name="year" data-testid="year" value="2026"></label>
+    </fieldset>
+    <button data-testid="next-1" onclick="go(2)">Next</button>
+  </div>
+
+  <div class="page" id="page-2">
+    <fieldset><legend>Page 2 of 3 — entity</legend>
+      <!-- No <select>, no role, no aria-label: a div pretending to be a dropdown. -->
+      <div class="fake-select" id="entity-type" onclick="toggleOptions()">Choose entity type</div>
+      <div id="entity-options" style="display:none">
+        <div class="fake-option" onclick="pickEntity('LLC')">LLC</div>
+        <div class="fake-option" onclick="pickEntity('S-Corp')">S-Corp</div>
+        <div class="fake-option" onclick="pickEntity('Nonprofit')">Nonprofit</div>
+      </div>
+      <div class="overlay-widget">
+        <label>NAICS code <input name="naics" data-testid="naics"></label>
+        <span class="muted">accessibility overlay active</span>
+      </div>
+    </fieldset>
+    <button data-testid="next-2" onclick="go(3)">Next</button>
+  </div>
+
+  <div class="page" id="page-3">
+    <fieldset><legend>Page 3 of 3 — sign and submit</legend>
+      <label>Signature <input name="signature" data-testid="signature"></label><br>
+      <label><input type="checkbox" data-testid="attest"> I attest the above is accurate</label>
+    </fieldset>
+    <button data-testid="submit-filing" onclick="submitFiling()">Submit filing</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function go(page) {
+      document.querySelectorAll(".page").forEach(function (p) { p.classList.remove("active"); });
+      document.getElementById("page-" + page).classList.add("active");
+    }
+    function toggleOptions() {
+      const box = document.getElementById("entity-options");
+      box.style.display = box.style.display === "none" ? "block" : "none";
+    }
+    function pickEntity(value) {
+      document.getElementById("entity-type").textContent = value;
+      document.getElementById("entity-options").style.display = "none";
+    }
+    function submitFiling() {
+      if (!document.querySelector('[data-testid="attest"]').checked) {
+        document.getElementById("result").textContent = "Attestation required.";
+        return;
+      }
+      document.getElementById("result").innerHTML =
+        '<p data-testid="filing-number">Filing number: ST-2026-88214</p>';
+    }
+  </script>
+</body>
+</html>

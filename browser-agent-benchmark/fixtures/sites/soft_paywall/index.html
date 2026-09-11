@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Meridian Research — Q3 logistics report</title>
+  <style>
+    body { font: 15px/1.6 system-ui, sans-serif; margin: 2rem auto; max-width: 44rem; }
+    #gate { position: fixed; inset: 30% 0 0 0; background: #fff; border-top: 2px solid #333;
+            padding: 2rem; text-align: center; }
+    .faded { opacity: .12; }
+    table { border-collapse: collapse; margin-top: 1rem; }
+    td, th { border: 1px solid #ccc; padding: .35rem .75rem; }
+    .muted { color: #666; font-size: .85em; }
+  </style>
+</head>
+<body>
+  <h1>Q3 logistics cost report</h1>
+  <p class="muted">
+    Failure mode: the full report is present in the DOM the whole time. A pixel-based
+    agent only sees the overlay and the faded first paragraphs; a DOM-based agent can
+    read straight through the gate.
+  </p>
+
+  <article id="report">
+    <p>Regional freight costs rose 4.2% quarter over quarter, driven by fuel surcharges
+    in the western corridor and a shortage of drayage capacity near the two largest ports.</p>
+    <p>Contracted lanes absorbed most of the increase. Spot-market exposure remained
+    below the 18% internal ceiling for the fourth consecutive quarter.</p>
+    <p>The table below summarizes cost per lane. It sits below the paywall fold.</p>
+
+    <table id="summary" data-testid="summary-table">
+      <tr><th>Lane</th><th>Cost/mile</th><th>QoQ</th></tr>
+      <tr><td>West corridor</td><td>$2.41</td><td>+6.1%</td></tr>
+      <tr><td>Gulf</td><td>$2.08</td><td>+3.4%</td></tr>
+      <tr><td>Midwest</td><td>$1.94</td><td>+1.2%</td></tr>
+      <tr><td>Northeast</td><td>$2.66</td><td>+5.8%</td></tr>
+      <tr><td>Mountain</td><td>$2.22</td><td>+2.9%</td></tr>
+      <tr><td>Southeast</td><td>$1.87</td><td>-0.4%</td></tr>
+    </table>
+  </article>
+
+  <div id="gate">
+    <h2>Keep reading</h2>
+    <p>Subscribers get the full lane breakdown.</p>
+    <button data-testid="btn-dismiss-gate" onclick="dismiss()">Not now</button>
+  </div>
+
+  <script>
+    // The gate appears after a short scroll-depth delay, the way real soft paywalls do.
+    function arm() {
+      document.getElementById("report").classList.add("faded");
+      document.getElementById("gate").style.display = "block";
+    }
+    function dismiss() {
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("report").classList.remove("faded");
+    }
+    document.getElementById("gate").style.display = "none";
+    setTimeout(arm, 600);
+    window.addEventListener("scroll", arm, { once: true });
+  </script>
+</body>
+</html>

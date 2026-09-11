@@ -1,0 +1,60 @@
+framework: computer_use
+enabled: true
+adapter: computer_use
+description: Anthropic Computer Use with Claude in a Dockerized Chrome (screenshot-based, sees pixels not DOM)
+observation: screenshot
+model: claude-3-7-sonnet
+max_steps: 30
+cost_per_task_usd: 0.42
+
+# Hook points for a future live implementation (see frameworks/computer_use.py).
+live:
+  container: chrome-desktop
+  display: ":1"
+  screen: 1280x800
+  env: [ANTHROPIC_API_KEY]
+
+# Published article numbers. Mock mode replays these exactly.
+reference:
+  overall_success_rate: 0.41
+  partial_bonus: 0.21
+  mean_duration_seconds: 260   # 4:20 — screenshot pipeline latency
+  mean_actions: 14
+  success_rate_by_category:
+    transactional: 0.30
+    data_extraction: 0.50
+    migration_bulk: 0.43
+    form_completion: 0.60     # wins here: pixels beat DOM on odd layouts
+
+partial_modes:
+  confirmation_not_clicked:
+    weight: 0.6
+    description: Reached the confirmation screen and declined to click the final submit.
+  timed_out_near_goal:
+    weight: 0.3
+    description: Screenshot loop was still converging on the goal when the clock ran out.
+  last_field_left_blank:
+    weight: 0.1
+    description: Main goal complete, one optional field never filled.
+
+failure_modes:
+  screenshot_loop_timeout:
+    weight: 0.35
+    tags: [bulk_repetition, pagination, infinite_scroll, countdown_timer]
+    description: Per-step screenshot latency exhausted the time budget on a repetitive task.
+  misread_pixel_target:
+    weight: 0.25
+    tags: [large_table, dynamic_pricing, type_mapping]
+    description: Read the wrong cell or price from the rendered pixels.
+  offscreen_content_missed:
+    weight: 0.20
+    tags: [lazy_load, scroll_gate, soft_paywall, pagination]
+    description: Content below the fold was never scrolled into view, so it does not exist to a pixel observer.
+  coordinate_drift:
+    weight: 0.15
+    tags: [spa_rerender, stale_state, modal_dismiss]
+    description: Layout shifted between screenshot and click; the coordinate landed on the wrong control.
+  captcha_unsolved:
+    weight: 0.05
+    tags: [captcha]
+    description: Interactive challenge not solved from pixels alone.

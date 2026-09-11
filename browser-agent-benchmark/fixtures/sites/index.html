@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Benchmark fixture sites</title>
+  <style>
+    body { font: 15px/1.6 system-ui, sans-serif; margin: 2rem auto; max-width: 42rem; }
+    li { margin-bottom: .5rem; }
+    .muted { color: #666; font-size: .9em; }
+  </style>
+</head>
+<body>
+  <h1>Benchmark fixture sites</h1>
+  <p class="muted">
+    Local stand-ins for the sites in the article. Each one isolates a failure mode so the
+    suite can be run without touching a real airline, tax authority, or billing portal.
+  </p>
+  <ul>
+    <li><a href="spa_form/">spa_form</a> — re-render invalidates <code>data-testid</code> after interaction</li>
+    <li><a href="soft_paywall/">soft_paywall</a> — content in the DOM, hidden from pixels</li>
+    <li><a href="multipage_form/">multipage_form</a> — fake select, accessibility overlay, 3 pages</li>
+    <li><a href="bulk_table/">bulk_table</a> — 50 rows across 5 pages</li>
+    <li><a href="checkout/">checkout</a> — final-confirm hesitation trap</li>
+    <li><a href="mfa_gate/">mfa_gate</a> — out-of-band code, always a human handoff</li>
+  </ul>
+</body>
+</html>

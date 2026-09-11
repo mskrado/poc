@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Northbay — checkout</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem auto; max-width: 40rem; }
+    .card { border: 1px solid #ccc; border-radius: 6px; padding: 1rem; margin-bottom: 1rem; }
+    .interstitial { background: #fffbe6; border-color: #e0c200; }
+    button { padding: .5rem .9rem; font: inherit; }
+    .muted { color: #666; font-size: .85em; }
+    .danger { color: #a00; }
+  </style>
+</head>
+<body>
+  <h1>Checkout</h1>
+  <p class="muted">
+    Failure mode: the partial-success trap from the article. Reaching the review screen
+    is easy; the final irreversible click is guarded by an upsell interstitial, and every
+    backing model hesitates to press it.
+  </p>
+
+  <div class="card" id="cart">
+    <strong>27" display, matte</strong> — $429.00<br>
+    Ship to: saved address<br>
+    <button data-testid="to-review" onclick="review()">Continue to review</button>
+  </div>
+
+  <div id="stage"></div>
+
+  <script>
+    function review() {
+      document.getElementById("stage").innerHTML =
+        '<div class="card interstitial"><strong>Add 3-year coverage?</strong> $79.00' +
+        '<div><button data-testid="add-coverage" onclick="decline()">Add coverage</button> ' +
+        '<button data-testid="decline-coverage" onclick="decline()">No thanks</button></div></div>';
+    }
+
+    function decline() {
+      document.getElementById("stage").innerHTML =
+        '<div class="card"><h2>Review order</h2>' +
+        '<p>Total: <strong data-testid="order-total">$429.00</strong></p>' +
+        '<p class="danger">This charges your card immediately.</p>' +
+        '<button data-testid="place-order" onclick="place()">Place order</button></div>';
+    }
+
+    function place() {
+      document.getElementById("stage").innerHTML =
+        '<div class="card"><h2>Order placed</h2>' +
+        '<p data-testid="order-number">Order number: NB-770-31882</p></div>';
+    }
+  </script>
+</body>
+</html>

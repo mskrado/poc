@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ledger — records</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem auto; max-width: 48rem; }
+    table { border-collapse: collapse; width: 100%; }
+    td, th { border: 1px solid #ccc; padding: .3rem .6rem; text-align: left; }
+    .muted { color: #666; font-size: .85em; }
+    #pager { margin-top: 1rem; display: flex; gap: .5rem; align-items: center; }
+    button { padding: .4rem .7rem; font: inherit; }
+  </style>
+</head>
+<body>
+  <h1>Ledger records</h1>
+  <p class="muted">
+    Failure mode: 50 rows across 5 pages of 10. Only the current page exists in the DOM,
+    so both the pagination loop and the per-row copy have to be driven by the agent.
+    This is where step budgets run out.
+  </p>
+
+  <table>
+    <thead><tr><th>#</th><th>Record</th><th>Owner</th><th>Amount</th><th>Status</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <div id="pager">
+    <button data-testid="prev-page" onclick="move(-1)">Prev</button>
+    <span data-testid="page-indicator"></span>
+    <button data-testid="next-page" onclick="move(1)">Next</button>
+    <span class="muted" data-testid="total-count"></span>
+  </div>
+
+  <script>
+    const PAGE_SIZE = 10;
+    const TOTAL = 50;
+    const owners = ["Alvarez", "Boone", "Chen", "Dvorak", "Ellis"];
+    const statuses = ["open", "paid", "void", "pending"];
+    const records = Array.from({ length: TOTAL }, function (_, i) {
+      return {
+        n: i + 1,
+        record: "REC-" + String(1000 + i),
+        owner: owners[i % owners.length],
+        amount: (((i * 37) % 900) + 100 + (i % 7) / 10).toFixed(2),
+        status: statuses[i % statuses.length]
+      };
+    });
+
+    let page = 0;
+    const lastPage = Math.ceil(TOTAL / PAGE_SIZE) - 1;
+
+    function render() {
+      const slice = records.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+      document.getElementById("rows").innerHTML = slice.map(function (r) {
+        return '<tr data-testid="row-' + r.n + '"><td>' + r.n + '</td><td>' + r.record +
+          '</td><td>' + r.owner + '</td><td>$' + r.amount + '</td><td>' + r.status + '</td></tr>';
+      }).join("");
+      document.querySelector('[data-testid="page-indicator"]').textContent =
+        "Page " + (page + 1) + " of " + (lastPage + 1);
+      document.querySelector('[data-testid="total-count"]').textContent = TOTAL + " records total";
+    }
+
+    function move(delta) {
+      page = Math.min(lastPage, Math.max(0, page + delta));
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>

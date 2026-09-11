@@ -1,0 +1,59 @@
+framework: browser_use
+enabled: true
+adapter: browser_use
+description: Browser-Use v0.1.40 agent loop with GPT-4o (DOM-based, high action throughput)
+observation: dom
+model: gpt-4o
+max_steps: 30
+cost_per_task_usd: 0.06
+
+# Hook points for a future live implementation (see frameworks/browser_use.py).
+live:
+  max_actions_per_step: 10
+  generate_gif: false
+  env: [OPENAI_API_KEY]
+
+# Published article numbers. Mock mode replays these exactly.
+reference:
+  overall_success_rate: 0.47
+  partial_bonus: 0.15
+  mean_duration_seconds: 100   # 1:40 — fastest of the three
+  mean_actions: 18             # over-clicks relative to Playwright-MCP
+  success_rate_by_category:
+    transactional: 0.50
+    data_extraction: 0.62
+    migration_bulk: 0.43
+    form_completion: 0.20
+
+partial_modes:
+  confirmation_not_clicked:
+    weight: 0.6
+    description: Reached the confirmation screen and declined to click the final submit.
+  overshot_then_recovered:
+    weight: 0.25
+    description: Extra clicks navigated away; recovered the main goal but lost a sub-step.
+  last_field_left_blank:
+    weight: 0.15
+    description: Main goal complete, one optional field never filled.
+
+failure_modes:
+  over_click_cascade:
+    weight: 0.35
+    tags: [dark_pattern, upsell_interstitial, modal_dismiss, confirmation_gate]
+    description: Generated more actions than needed; a stray click compounded into a wrong state.
+  captcha_unsolved:
+    weight: 0.20
+    tags: [captcha]
+    description: Attempted an hCaptcha challenge; solve rate is roughly 1 in 5.
+  form_semantics_lost:
+    weight: 0.20
+    tags: [custom_widgets, accessibility_overlay, structured_data, multi_step]
+    description: Filled fields in the wrong order and tripped client-side validation.
+  action_budget_exhausted:
+    weight: 0.15
+    tags: [bulk_repetition, pagination, infinite_scroll]
+    description: Burned the step budget on redundant actions before finishing the loop.
+  navigation_drift:
+    weight: 0.10
+    tags: [spa_rerender, lazy_load, stale_state]
+    description: Followed a plausible but wrong link and never returned to the task page.

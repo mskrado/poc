@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Harbor Bank — verification required</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem auto; max-width: 36rem; }
+    .card { border: 1px solid #ccc; border-radius: 6px; padding: 1rem; }
+    input, button { padding: .5rem; font: inherit; }
+    .muted { color: #666; font-size: .85em; }
+  </style>
+</head>
+<body>
+  <h1>Verification required</h1>
+  <p class="muted">
+    Failure mode: the hard stop. The code is delivered out of band, so no framework in the
+    article can proceed. Every task tagged <code>mfa</code> is expected to end in a human
+    handoff — that is the control case for the tiered router.
+  </p>
+
+  <div class="card">
+    <p>We sent a 6-digit code to the device ending in 4417.</p>
+    <label>Code <input data-testid="totp-code" maxlength="6" placeholder="------"></label>
+    <button data-testid="verify" onclick="verify()">Verify</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    // No code is ever valid from inside the browser session: that is the point.
+    function verify() {
+      document.getElementById("result").innerHTML =
+        '<span data-testid="verify-error">That code is not valid. Check your device and try again.</span>';
+    }
+  </script>
+</body>
+</html>

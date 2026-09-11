@@ -1,0 +1,266 @@
+# 30 browser automation workflows from the article, mapped onto local synthetic sites.
+# Category counts are fixed by the article: 10 / 8 / 7 / 5.
+version: 1
+
+categories:
+  transactional:
+    count: 10
+    label: Transactional
+    description: Book, reserve, file, submit, purchase.
+  data_extraction:
+    count: 8
+    label: Data extraction
+    description: Pull structured data out of pages that do not want to give it up.
+  migration_bulk:
+    count: 7
+    label: Migration / bulk
+    description: Repetitive multi-record moves between systems.
+  form_completion:
+    count: 5
+    label: Form completion
+    description: Long structured forms with unusual widgets and layouts.
+
+tasks:
+  # --- Transactional (10) -------------------------------------------------
+  - id: book_flight_roundtrip
+    category: transactional
+    goal: Book a round-trip flight SFO-JFK departing in 3 weeks, aisle seat, under $650.
+    fixture: spa_form
+    success_criteria: Booking reference visible on the confirmation screen.
+    partial_criteria: Reached the payment review screen without confirming.
+    tags: [spa_rerender, dynamic_pricing, seat_picker]
+
+  - id: reserve_restaurant_table
+    category: transactional
+    goal: Reserve a table for 4 at 7:30pm Friday, or the nearest available slot.
+    fixture: spa_form
+    success_criteria: Reservation code returned for a slot within 30 minutes of the target.
+    partial_criteria: Correct slot selected but reservation never submitted.
+    tags: [spa_rerender, time_slot_picker]
+
+  - id: usps_change_of_address
+    category: transactional
+    goal: File a permanent change-of-address from the old address to the new one.
+    fixture: multipage_form
+    success_criteria: Confirmation number issued for the new address.
+    partial_criteria: All pages filled, stopped at the identity-fee step.
+    tags: [multi_step, address_validation]
+
+  - id: county_permit_application
+    category: transactional
+    goal: Submit a residential fence permit application with parcel number and site plan.
+    fixture: multipage_form
+    success_criteria: Application ID returned by the permit portal.
+    partial_criteria: Application completed but left in draft state.
+    tags: [unusual_layout, file_upload, legacy_html]
+
+  - id: marketplace_product_purchase
+    category: transactional
+    goal: Buy the specific listed 27-inch monitor variant and ship it to the saved address.
+    fixture: checkout
+    success_criteria: Order number visible after placing the order.
+    partial_criteria: Reached the final review screen, did not click "Place order".
+    tags: [confirmation_gate, variant_picker]
+
+  - id: hotel_booking_modify
+    category: transactional
+    goal: Change an existing hotel reservation from 2 nights to 3 nights.
+    fixture: spa_form
+    success_criteria: Updated itinerary shows the new checkout date.
+    partial_criteria: New date selected but change never saved.
+    tags: [spa_rerender, stale_state]
+
+  - id: concert_ticket_hold
+    category: transactional
+    goal: Hold two adjacent tickets in the lower bowl before the timer expires.
+    fixture: checkout
+    success_criteria: Two adjacent seats held with a live countdown.
+    partial_criteria: Seats selected, hold not confirmed before timeout.
+    tags: [captcha, countdown_timer, confirmation_gate]
+
+  - id: subscription_cancel_flow
+    category: transactional
+    goal: Cancel the active subscription and decline every retention offer.
+    fixture: checkout
+    success_criteria: Cancellation confirmation page reached.
+    partial_criteria: Navigated the retention flow but stopped at the final confirm.
+    tags: [dark_pattern, confirmation_gate, modal_dismiss]
+
+  - id: bank_transfer_schedule
+    category: transactional
+    goal: Schedule a recurring monthly transfer of $250 to the savings account.
+    fixture: mfa_gate
+    success_criteria: Recurring transfer visible in the scheduled payments list.
+    partial_criteria: Transfer details entered, blocked at verification.
+    tags: [mfa, totp, financial]
+
+  - id: car_rental_reserve
+    category: transactional
+    goal: Reserve a midsize car for the weekend, declining all insurance upsells.
+    fixture: checkout
+    success_criteria: Reservation confirmation with the correct vehicle class.
+    partial_criteria: Upsell interstitials cleared but reservation not confirmed.
+    tags: [upsell_interstitial, confirmation_gate]
+
+  # --- Data extraction (8) ------------------------------------------------
+  - id: soft_paywall_report_extract
+    category: data_extraction
+    goal: Extract the full text and the summary table from a report behind a soft paywall.
+    fixture: soft_paywall
+    success_criteria: All 6 table rows plus the report body captured.
+    partial_criteria: Body captured, table truncated by the overlay.
+    tags: [soft_paywall, scroll_gate, modal_dismiss]
+
+  - id: gov_statistics_table
+    category: data_extraction
+    goal: Extract the full employment statistics table across all pages.
+    fixture: bulk_table
+    success_criteria: Every row from every page captured with correct column typing.
+    partial_criteria: First page captured, pagination not followed.
+    tags: [large_table, pagination, legacy_html]
+
+  - id: billing_portal_invoices
+    category: data_extraction
+    goal: Pull every invoice amount and date from the billing portal history.
+    fixture: bulk_table
+    success_criteria: All invoice amounts summed and itemized.
+    partial_criteria: Visible invoices captured, archived ones missed.
+    tags: [pagination, auth_session]
+
+  - id: competitor_pricing_matrix
+    category: data_extraction
+    goal: Build a pricing matrix of all plan tiers including the annual toggle prices.
+    fixture: bulk_table
+    success_criteria: Monthly and annual prices captured for every tier.
+    partial_criteria: Monthly prices captured, annual toggle never applied.
+    tags: [lazy_load, toggle_state]
+
+  - id: job_listing_extract
+    category: data_extraction
+    goal: Extract every open engineering role with title, location, and posting date.
+    fixture: bulk_table
+    success_criteria: All listings captured after exhausting infinite scroll.
+    partial_criteria: Only the first viewport of listings captured.
+    tags: [infinite_scroll, lazy_load]
+
+  - id: research_paper_metadata
+    category: data_extraction
+    goal: Collect title, authors, abstract, and citation count for the linked paper.
+    fixture: soft_paywall
+    success_criteria: All four metadata fields captured accurately.
+    partial_criteria: Metadata captured except citation count behind the gate.
+    tags: [soft_paywall, modal_dismiss]
+
+  - id: property_records_lookup
+    category: data_extraction
+    goal: Look up the parcel record and extract owner, assessed value, and last sale date.
+    fixture: multipage_form
+    success_criteria: All three fields extracted from the record detail view.
+    partial_criteria: Search completed, detail view not opened.
+    tags: [legacy_html, unusual_layout, frame_layout]
+
+  - id: shipping_rate_compare
+    category: data_extraction
+    goal: Compare shipping rates for the same parcel across all available service levels.
+    fixture: spa_form
+    success_criteria: Rate captured for every service level offered.
+    partial_criteria: Rates captured for express only.
+    tags: [spa_rerender, dynamic_pricing]
+
+  # --- Migration / bulk (7) -----------------------------------------------
+  - id: sheet_to_notion_50_rows
+    category: migration_bulk
+    goal: Move 50 rows from a spreadsheet into a Notion-style database, preserving types.
+    fixture: bulk_table
+    success_criteria: All 50 rows present in the destination with correct field types.
+    partial_criteria: Most rows migrated, tail dropped after a rate limit.
+    tags: [bulk_repetition, rate_limit, type_mapping]
+
+  - id: bulk_download_invoices
+    category: migration_bulk
+    goal: Download every invoice PDF from the SaaS billing portal for the last year.
+    fixture: bulk_table
+    success_criteria: All 12 invoice files downloaded and named by period.
+    partial_criteria: Downloads started but a subset failed silently.
+    tags: [bulk_repetition, download_handling]
+
+  - id: csv_contacts_to_network
+    category: migration_bulk
+    goal: Add every contact from the CSV into the professional network account.
+    fixture: mfa_gate
+    success_criteria: All contacts imported and confirmed.
+    partial_criteria: CSV uploaded, import blocked at verification.
+    tags: [mfa, sms_verify, bulk_repetition]
+
+  - id: crm_lead_import
+    category: migration_bulk
+    goal: Import leads into the CRM, skipping duplicates by email.
+    fixture: bulk_table
+    success_criteria: All unique leads created with zero duplicates.
+    partial_criteria: Leads created but duplicates not de-duplicated.
+    tags: [bulk_repetition, dedupe]
+
+  - id: photo_album_migration
+    category: migration_bulk
+    goal: Move an album of images into the destination gallery with captions intact.
+    fixture: bulk_table
+    success_criteria: Every image transferred with its caption.
+    partial_criteria: Images transferred, captions lost.
+    tags: [download_handling, lazy_load, bulk_repetition]
+
+  - id: email_labels_bulk_apply
+    category: migration_bulk
+    goal: Apply the correct label to every message matching the saved search.
+    fixture: bulk_table
+    success_criteria: All matching messages labeled, no false positives.
+    partial_criteria: Visible page labeled, remaining pages skipped.
+    tags: [bulk_repetition, keyboard_shortcuts, pagination]
+
+  - id: ticket_backlog_transfer
+    category: migration_bulk
+    goal: Transfer the open ticket backlog into the new tracker with priorities preserved.
+    fixture: bulk_table
+    success_criteria: Every open ticket recreated with matching priority.
+    partial_criteria: Tickets transferred with priorities defaulted.
+    tags: [bulk_repetition, pagination, type_mapping]
+
+  # --- Form completion (5) ------------------------------------------------
+  - id: irs_multipage_form
+    category: form_completion
+    goal: Complete a multi-page tax form from structured taxpayer data.
+    fixture: multipage_form
+    success_criteria: All pages validated and the form submitted.
+    partial_criteria: All pages filled, stopped before the signature step.
+    tags: [multi_step, structured_data, unusual_layout]
+
+  - id: state_business_registration
+    category: form_completion
+    goal: Register a new LLC with officers, registered agent, and NAICS code.
+    fixture: multipage_form
+    success_criteria: Registration submitted and a filing number returned.
+    partial_criteria: Sections complete, payment step not reached.
+    tags: [multi_step, unusual_layout, legacy_html]
+
+  - id: building_permit_application
+    category: form_completion
+    goal: Submit a building permit application with attachments and contractor details.
+    fixture: multipage_form
+    success_criteria: Permit application submitted with all attachments accepted.
+    partial_criteria: Form complete, attachment upload failed.
+    tags: [file_upload, unusual_layout, custom_widgets]
+
+  - id: insurance_claim_form
+    category: form_completion
+    goal: File an auto insurance claim with incident details and photos.
+    fixture: multipage_form
+    success_criteria: Claim number issued.
+    partial_criteria: Claim drafted but not submitted.
+    tags: [accessibility_overlay, custom_widgets, multi_step]
+
+  - id: university_application
+    category: form_completion
+    goal: Complete an application with transcripts, essays, and recommender details.
+    fixture: multipage_form
+    success_criteria: Application submitted with all sections marked complete.
+    partial_criteria: All sections complete, final submit not clicked.
+    tags: [custom_widgets, multi_step, structured_data]
