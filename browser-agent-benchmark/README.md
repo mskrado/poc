@@ -1,7 +1,7 @@
 # browser-agent-benchmark
 
-> **Article:** I Ran 30 Real Browser Automation Workflows Through Playwright-MCP, Browser-Use, and Computer-Use
-> *roiscale.ai — Rex runs 30 real browser automation workflows (flight booking, tax forms, paywalled reports, Notion migrations) through three frameworks and publishes success rates and failure patterns the README demos never show.*
+> **Article:** [Browser-Use Frameworks Compared: Playwright-MCP, Browser-Use, and Computer-Use Against 30 Real Workflows](https://roiscale.ai/sites/roiscale/articles/4e8c4b38-7b2d-47ad-8118-0d542259e707/browser-use-frameworks-compared-playwright-mcp-browser-use-and-computer-use)  
+> *roiscale.ai — Rex runs 30 real browser automation workflows (flight booking, tax forms, paywalled reports, Notion migrations) through three frameworks and publishes success rates and failure patterns that the README demos will never show you.*
 
 This POC is a **runnable harness** for that methodology: the 30-workflow catalog, the scoring rules, the failure-mode taxonomy, and the tiered router the author actually deployed.
 
