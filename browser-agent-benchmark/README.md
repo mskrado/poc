@@ -1,5 +1,7 @@
 # browser-agent-benchmark
 
+![Three browser automation frameworks - DOM-based, over-clicking, and pixel-based - attempting real web workflows, escalating through a tiered router to a human handoff](assets/hero.png)
+
 > **Article:** [Browser-Use Frameworks Compared: Playwright-MCP, Browser-Use, and Computer-Use Against 30 Real Workflows](https://roiscale.ai/sites/roiscale/articles/4e8c4b38-7b2d-47ad-8118-0d542259e707/browser-use-frameworks-compared-playwright-mcp-browser-use-and-computer-use)  
 > *roiscale.ai — Rex runs 30 real browser automation workflows (flight booking, tax forms, paywalled reports, Notion migrations) through three frameworks and publishes success rates and failure patterns that the README demos will never show you.*
 
