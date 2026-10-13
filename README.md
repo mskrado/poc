@@ -10,6 +10,6 @@ Proof-of-concept projects — small, self-contained experiments that support art
 | [`voice-agent-benchmark/`](voice-agent-benchmark/) | [I Benchmarked the 2026 Voice Agent Stack: Vapi vs Retell vs Pipecat vs Roll-Your-Own](https://roiscale.ai/sites/roiscale/articles/89233950-d237-4024-be85-4556f8eb0d20/i-benchmarked-the-2026-voice-agent-stack-vapi-vs-retell-vs-pipecat-vs-roll-your) |
 | [`oncall-multi-agent/`](oncall-multi-agent/) | [I Replaced My Whole On-Call Rotation With a Multi-Agent System. Here Is What I Got Right and What I Got Wrong.](https://roiscale.ai/sites/roiscale/articles/cb684b24-c407-471f-bacd-0fe607a68b1b/i-replaced-my-whole-on-call-rotation-with-a-multi-agent-system-here-is-what-i) |
 | [`browser-agent-benchmark/`](browser-agent-benchmark/) | [Browser-Use Frameworks Compared: Playwright-MCP, Browser-Use, and Computer-Use Against 30 Real Workflows](https://roiscale.ai/sites/roiscale/articles/4e8c4b38-7b2d-47ad-8118-0d542259e707/browser-use-frameworks-compared-playwright-mcp-browser-use-and-computer-use) |
-| [`decision-gate/`](decision-gate/) | A scored decision gate on 50 support tickets (local CPU run; see the README) |
+| [`decision-gate/`](decision-gate/) | [I Triaged 50 Support Tickets Twice. The Gate Was 2.6× Faster, and I Still Wouldn't Ship the Router.](decision-gate/README.md) |
 
 Each subdirectory is runnable on its own. See its README for setup and test commands.
