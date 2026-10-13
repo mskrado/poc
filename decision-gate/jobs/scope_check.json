@@ -1,0 +1,11 @@
+{
+  "job": "scope_check",
+  "endpoint": "POST http://localhost:11434/v1/systemone",
+  "model": "tev1:4b",
+  "when": "before executing each planned step",
+  "state": {"original_task": "<task>", "proposed_step": "<step>"},
+  "question": {"in_scope": {"type": "noul", "instructions": "Is this step still inside the original task?"}},
+  "threshold": 0.8,
+  "gate_signal_type": "stop",
+  "on_below_threshold": "end the run and flag a human"
+}
