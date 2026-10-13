@@ -1,0 +1,23 @@
+[project]
+name = "decision-gate"
+version = "0.1.0"
+description = "POC: scored decision gate versus a chat-model harness on 50 support tickets"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib==3.11.2",
+    "numpy==2.5.3",
+    "pandas==3.0.6",
+    "python-docx==1.2.0",
+    "requests==2.34.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+
+[tool.setuptools.packages.find]
+include = ["gate*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

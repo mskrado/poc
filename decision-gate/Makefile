@@ -2,8 +2,8 @@ PY ?= .venv/bin/python
 
 .PHONY: setup build models data run cases sweep test report article
 
-setup build:   ## create .venv and install the pinned requirements
-	python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+setup build:   ## create .venv and install this project (same pins as pyproject.toml)
+	python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"
 
 models:        ## pull the two models (Ollama >= 0.35; scripts/start_ollama.sh)
 	ollama pull tev1:4b && ollama pull qwen3.5:4b-q4_K_M
