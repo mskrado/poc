@@ -1,0 +1,15 @@
+{
+  "job": "ticket_triage_and_router",
+  "endpoint": "POST http://localhost:11434/v1/systemone",
+  "model": "tev1:4b",
+  "state": {"ticket": "<customer message>"},
+  "questions": {
+    "category": {"type": "choice", "instructions": "Which category does this customer support ticket belong to?", "criteria": "<category: description map, see gate/data.py>"},
+    "route": {"type": "choice", "instructions": "Which handler should take this ticket?", "criteria": {"small_model": "...", "frontier": "...", "human": "..."}}
+  },
+  "second_call": "intent choice, options picked by code from the category answer",
+  "threshold": 0.8,
+  "gate_signal_type": "route",
+  "person_facing": true,
+  "on_below_threshold": "route_human (there is no reject action)"
+}

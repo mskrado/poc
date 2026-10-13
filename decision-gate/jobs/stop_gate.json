@@ -1,0 +1,12 @@
+{
+  "job": "agent_stop_gate",
+  "endpoint": "POST http://localhost:11434/v1/systemone",
+  "model": "tev1:4b",
+  "when": "after every tool call, before the agent's next step",
+  "state": {"task": "<original task>", "last_tool_call": "<tool + args>", "tool_output": "<raw output>"},
+  "question": {"ok": {"type": "noul", "instructions": "Did the last tool call succeed and return usable data?"}},
+  "threshold": 0.8,
+  "gate_signal_type": "stop",
+  "on_below_threshold": "stop the loop and flag a human (person-facing step: route to human reviewer)",
+  "note": "Untuned threshold. A stop signal, not a check that any answer is true."
+}

@@ -1,0 +1,51 @@
+ticket_id,row,category,intent,instruction,flags
+bitext-21771,21771,ACCOUNT,registration_problems,where to notify of problems with sign-up?,BILM
+bitext-24683,24683,ACCOUNT,switch_account,wanna  use the {{Account Type}} profile help me,BCLQZ
+bitext-20569,20569,ACCOUNT,recover_password,I cannot retrieve the bloody PIN code of my profile,BELNW
+bitext-11522,11522,ACCOUNT,delete_account,give me information about the deletion of my {{Account Type}} account,BL
+bitext-24692,24692,ACCOUNT,switch_account,i need assistance changing to the {{Account Type}} account,BLQ
+bitext-3167,3167,CANCEL,check_cancellation_fee,I am tring to see the early exit penalty,BLZ
+bitext-3897,3897,CANCEL,check_cancellation_fee,check cancellation fee,BK
+bitext-3661,3661,CANCEL,check_cancellation_fee,I do not know how to check the cancellation charge,BEL
+bitext-3766,3766,CANCEL,check_cancellation_fee,I want help to see the early exit fees,BLM
+bitext-8170,8170,CONTACT,contact_customer_service,I have to check what hours I can reach customer assistance,BL
+bitext-8266,8266,CONTACT,contact_customer_service,assistance to see what hours i can call customer service,BLQ
+bitext-8212,8212,CONTACT,contact_customer_service,what do I have to do to call customer service?,BIL
+bitext-8495,8495,CONTACT,contact_customer_service,where do i see what hours i can contact customer support,BILQ
+bitext-9202,9202,CONTACT,contact_human_agent,how can I talk with a human agent?,BIL
+bitext-12794,12794,DELIVERY,delivery_options,do you shp to {{Delivery City}}?,BILSZ
+bitext-13577,13577,DELIVERY,delivery_period,help seeing how long it takes for my shipment to arrive,BL
+bitext-12319,12319,DELIVERY,delivery_options,do ya ship to {{Delivery Country}},BILQS
+bitext-13504,13504,DELIVERY,delivery_period,I want help to see how soon can I expect my product,BL
+bitext-7170,7170,FEEDBACK,complaint,how do I lodge a damn consumer reclamation?,BILW
+bitext-7266,7266,FEEDBACK,complaint,how tolodge a customer complaint,BILQZ
+bitext-7212,7212,FEEDBACK,complaint,I'm not happy with ur work how do i make a claim,BCEILQ
+bitext-7495,7495,FEEDBACK,complaint,file consumer reclamation against ur company,BKLQ
+bitext-4174,4174,INVOICE,check_invoice,I don't know what to do to locate the involice #85632,BLZ
+bitext-4270,4270,INVOICE,check_invoice,i need assistance to give a quick look at the invoice #37777,BLQ
+bitext-4216,4216,INVOICE,check_invoice,what do i have to do to give a quick look at my bill #00108,BILQ
+bitext-4499,4499,INVOICE,check_invoice,I want help to give a quick look at the invoice #85632,BL
+bitext-15187,15187,INVOICE,get_invoice,i want assistance to downlolad my bill #85632,BLQZ
+bitext-1487,1487,ORDER,change_order,can you help me remove something from purchase {{Order Number}}?,BIL
+bitext-18993,18993,ORDER,place_order,i dont know how  to purchase several products,BLMQZ
+bitext-1717,1717,ORDER,change_order,can uhelp me swappping a product of purchase {{Order Number}},BILQZ
+bitext-864,864,ORDER,cancel_order,I want help to cancel purchase {{Order Number}},BL
+bitext-25559,25559,ORDER,track_order,checking order {{Order Number}} status,BK
+bitext-5174,5174,PAYMENT,check_payment_methods,help me see your allowed payment modalities,BL
+bitext-5270,5270,PAYMENT,check_payment_methods,where to check what payment payment modalities are available,BILQ
+bitext-5216,5216,PAYMENT,check_payment_methods,"I need to check the available payment methods, help me",BCL
+bitext-5499,5499,PAYMENT,check_payment_methods,need assistance seeing ur available payment methods,BLQ
+bitext-18182,18182,PAYMENT,payment_issue,I want assistance to notify of troubles with payments,BLM
+bitext-6328,6328,REFUND,check_refund_policy,I need to check in which cases can I ask for a reimbursement,BL
+bitext-26553,26553,REFUND,track_refund,I am waiting for a reimbursement of {{Currency Symbol}}{{Refund Amount}},BL
+bitext-16265,16265,REFUND,get_refund,I don't know how I can get a restitution of my money,BL
+bitext-5969,5969,REFUND,check_refund_policy,I have to see in what cases can I request a refund,BL
+bitext-16512,16512,REFUND,get_refund,how can I get refunds of my money?,BIM
+bitext-2747,2747,SHIPPING,change_shipping_address,I have issues editing my address,BLM
+bitext-2760,2760,SHIPPING,change_shipping_address,can you help me to correct my address?,BIL
+bitext-23564,23564,SHIPPING,set_up_shipping_address,ido not know how i can submit the new shipping address,BELQZ
+bitext-23161,23161,SHIPPING,set_up_shipping_address,I have an issue entering a new shipping address,BL
+bitext-17348,17348,SUBSCRIPTION,newsletter_subscription,i want assistance unsubscribing from the newsletter,BLQ
+bitext-17688,17688,SUBSCRIPTION,newsletter_subscription,"I need to unsubscribe from the newsletter, can yyou help me?",BCILZ
+bitext-17104,17104,SUBSCRIPTION,newsletter_subscription,can uhelp me subscribe to ur newsletter,BILQ
+bitext-17204,17204,SUBSCRIPTION,newsletter_subscription,I acn't unsubscribe to your company newsletter,BLZ
