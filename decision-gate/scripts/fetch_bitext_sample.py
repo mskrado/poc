@@ -31,6 +31,14 @@ from gate.data import (  # noqa: E402
 COLS = ["ticket_id", "row", "category", "intent", "instruction", "flags"]
 
 
+def _show(path: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return str(resolved.relative_to(ROOT))
+    except ValueError:
+        return resolved.name
+
+
 def _records(df):
     return list(map(tuple, df[COLS].astype(str).itertuples(index=False, name=None)))
 
@@ -48,10 +56,10 @@ def main():
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     sample.to_csv(out, index=False)
-    print(f"downloaded {BITEXT_FILE}")
+    print(f"bitext file {BITEXT_FILE}")
     print(f"revision {BITEXT_REV}")
     print(f"sha256 {BITEXT_SHA256}")
-    print(f"wrote {out} ({len(sample)} tickets, seed {SEED})")
+    print(f"wrote {_show(out)} ({len(sample)} tickets, seed {SEED})")
 
     if not a.check:
         return 0
