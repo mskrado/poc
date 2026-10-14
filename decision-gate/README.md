@@ -7,7 +7,7 @@ The gate asks a fixed question and gets a probability back. Python then picks th
 What I got out of putting the decision in code:
 
 - A score and an action, in place of a chat paragraph plus a regex.
-- There is no REJECT action. On a person-facing step a low score can only route to a human (`route_human`). `GateDecision` raises if that step is stopped or sent anywhere else.
+- There is no REJECT action. On a person-facing step a low score can only route to a human (`route_human`). `GateDecision` raises if that step is stopped or sent anywhere else. When the action is `route_human`, `defer_reason` says why, for example `low_confidence: top=small_model p=0.69 < 0.8`. A confident human pick is `model_choice: top=human p=0.95 >= 0.8`. Every other action leaves `defer_reason` as `None`. Logging that reason is an idea from Noah Solace (roiscale.ai).
 - On an agent tool loop, a low score stops the loop. A bad tool result does not get retried until the cap.
 - On retrieved memory, a low score flags the memory.
 
@@ -199,7 +199,7 @@ The 0.8 row matches `summary.json`: 36 to a human, 7 confident human picks, 29 f
 ## How to read results/
 
 - `results/summary.json` — headline counts, seeded-case scores, `monday_copyable_jobs`, and the `run` block. Start here.
-- `results/results.csv` — one row per decision. 237 data rows. `gate_signal_type` is `stop` or `route`. `action` is `continue`, `stop`, `route_small`, `route_frontier`, or `route_human`. On router rows, `route_reason` says whether a human route was a confident pick or a fallback. On the error-entry rows, `caught_by` is `error_scanner`, `error_scanner+score`, `score_only`, or `none`. A score is a stop or route label. It is not a check that a sentence is true (`orion_review.grounding_check_present` is false).
+- `results/results.csv` — one row per decision. 237 data rows. `gate_signal_type` is `stop` or `route`. `action` is `continue`, `stop`, `route_small`, `route_frontier`, or `route_human`. On router rows, `route_reason` says whether a human route was a confident pick or a fallback. On the error-entry rows, `caught_by` is `error_scanner`, `error_scanner+score`, `score_only`, or `none`. A score is a stop or route label. It is not a check that a sentence is true (`orion_review.grounding_check_present` is false). `defer_reason` is on the `GateDecision` object, not a new column in this file.
 - `results/transcripts.jsonl` — ungated chat replies for the seeded cases, so you can see what the regex judged.
 - `results/sample_tickets.csv` — the 50 tickets (Bitext row id, category, intent, instruction).
 - `results/charts/01_tokens_time_chat_vs_gate.png` — tokens and wall time, from the summary.
@@ -227,6 +227,7 @@ A different Ollama build, a different model tag, or a different machine will giv
 
 ## Layout
 
+- `gate/types.py` — `GateDecision`, including `defer_reason`.
 - `gate/gates.py` — stop, scope, memory, triage, intent.
 - `gate/policy.py` — turns a score into an action.
 - `gate/checks.py` — the regex error scanner and the chat-prose parsers.

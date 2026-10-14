@@ -25,6 +25,21 @@ class Action(str, Enum):
     # No REJECT / DENY / DECLINE member exists. Do not add one.
 
 
+def _short_number(value: float) -> str:
+    """0.8 stays '0.8'; 0.6885 stays '0.6885'."""
+    return f"{value:.4f}".rstrip("0").rstrip(".") or "0"
+
+
+def defer_reason_text(label: str, score: float, threshold: float, action: Action) -> str | None:
+    """Why a decision went to a human. None when it did not."""
+    if action is not Action.ROUTE_HUMAN:
+        return None
+    top = f"top={label} p={_short_number(score)}"
+    if score < threshold:
+        return f"low_confidence: {top} < {_short_number(threshold)}"
+    return f"model_choice: {top} >= {_short_number(threshold)}"
+
+
 @dataclass(frozen=True)
 class GateDecision:
     gate: str                       # e.g. "stop_gate", "router_gate"
@@ -38,6 +53,8 @@ class GateDecision:
     output_tokens: int = 0
     wall_ms: float = 0.0
     raw: dict = field(default_factory=dict, compare=False, repr=False)
+    # Set in __post_init__. A string when action is route_human, otherwise None.
+    defer_reason: str | None = field(default=None, init=False)
 
     def __post_init__(self):
         if not isinstance(self.signal_type, GateSignalType):
@@ -48,3 +65,7 @@ class GateDecision:
             raise ValueError(
                 "person-facing step with a low score may only route to a human reviewer"
             )
+        object.__setattr__(
+            self, "defer_reason",
+            defer_reason_text(self.label, self.score, self.threshold, self.action),
+        )
