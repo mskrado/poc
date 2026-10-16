@@ -1,0 +1,13 @@
+[project]
+name = "delivery-readiness-check"
+version = "0.1.0"
+description = "Score an AI coding pilot on review, rollback and measurement, and compute change fail rate and lead time from a deploy-history CSV."
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[tool.setuptools]
+py-modules = ["delivery_metrics"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

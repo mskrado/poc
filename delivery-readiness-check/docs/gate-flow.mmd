@@ -1,0 +1,8 @@
+%% Delivery Readiness Check: gate flow (labels only; thresholds from checklist.md)
+flowchart LR
+    P([Pilot enters]) --> R[Review<br/>small batches]
+    R --> B[Rollback<br/>version control + revert drill]
+    B --> M[Measure<br/>change failure rate + lead time]
+    M --> D{Score 20 or more of 24<br/>and no zero on A3, B2, C1, C4?}
+    D -- yes --> S([Scale])
+    D -- no --> F([Fix first])
