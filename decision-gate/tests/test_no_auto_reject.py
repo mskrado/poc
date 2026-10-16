@@ -43,6 +43,44 @@ def test_gate_decision_refuses_non_human_action_on_low_person_facing_score():
         GateDecision("hiring_screen", GateSignalType.ROUTE, "frontier", 0.1, 0.8, Action.ROUTE_FRONTIER, True)
     ok = GateDecision("hiring_screen", GateSignalType.STOP, "false", 0.1, 0.8, Action.ROUTE_HUMAN, True)
     assert ok.action is Action.ROUTE_HUMAN
+    assert ok.defer_reason == "low_confidence: top=false p=0.1 < 0.8"
+
+
+def test_defer_reason_only_when_routed_to_a_human():
+    threshold = 0.8
+    low = GateDecision(
+        "router_gate", GateSignalType.ROUTE, "small_model", 0.69, threshold,
+        policy.decide_route("small_model", 0.69, threshold, person_facing=True), True,
+    )
+    assert low.action is Action.ROUTE_HUMAN
+    assert low.defer_reason == "low_confidence: top=small_model p=0.69 < 0.8"
+
+    # A confident "human" pick is still a route to a person, so the reason is logged.
+    picked = GateDecision(
+        "router_gate", GateSignalType.ROUTE, "human", 0.95, threshold,
+        policy.decide_route("human", 0.95, threshold, person_facing=True), True,
+    )
+    assert picked.defer_reason == "model_choice: top=human p=0.95 >= 0.8"
+
+    kept = GateDecision(
+        "triage_category_gate", GateSignalType.ROUTE, "ACCOUNT", 0.99, threshold,
+        policy.decide_label(0.99, threshold, person_facing=True), True,
+    )
+    assert kept.action is Action.CONTINUE
+    assert kept.defer_reason is None
+
+    stopped = GateDecision(
+        "stop_gate", GateSignalType.STOP, "false", 0.2, threshold,
+        policy.decide_stop(0.2, threshold, person_facing=False), False,
+    )
+    assert stopped.action is Action.STOP
+    assert stopped.defer_reason is None
+
+    person = GateDecision(
+        "scope_gate", GateSignalType.STOP, "false", 0.2, threshold,
+        policy.decide_stop(0.2, threshold, person_facing=True), True,
+    )
+    assert person.defer_reason == "low_confidence: top=false p=0.2 < 0.8"
 
 
 def test_no_reject_string_in_policy_source():

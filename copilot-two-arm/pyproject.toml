@@ -1,0 +1,13 @@
+[project]
+name = "copilot-two-arm"
+version = "0.1.0"
+description = "Time an AI arm against a no-AI arm on a greenfield task and a mature-codebase fix, with self-reported speed next to measured time."
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = ["pytest>=8", "matplotlib>=3.8"]
+
+[tool.setuptools]
+packages = ["twoarm"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

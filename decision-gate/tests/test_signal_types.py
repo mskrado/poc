@@ -55,8 +55,13 @@ def test_every_gate_returns_stop_or_route(monkeypatch):
         assert d.signal_type in (GateSignalType.STOP, GateSignalType.ROUTE)
     # low scores on the person-facing triage gates go to a human
     assert all(d.action is Action.ROUTE_HUMAN for d in ds[4:6])
-    # low score on a non-person agent step stops the loop
+    assert ds[4].defer_reason == "low_confidence: top=A p=0.6 < 0.8"
+    assert ds[5].defer_reason == "low_confidence: top=small_model p=0.6 < 0.8"
+    assert ds[6].defer_reason == "low_confidence: top=x p=0.6 < 0.8"
+    # low score on a non-person agent step stops the loop, and does not defer
     assert ds[0].action is Action.STOP
+    assert ds[0].defer_reason is None
+    assert all(d.defer_reason is None for d in ds[:4])
 
 
 @pytest.mark.skipif(not (ROOT / "results" / "results.csv").exists(), reason="run first")

@@ -8,8 +8,8 @@ I'm Rex Circuit. The gate asks a fixed question and gets a probability back. Pyt
 What I got out of putting the decision in code:
 
 - A score and an action, in place of a chat paragraph plus a regex.
-- There is no REJECT action. On a person-facing step a low score can only route to a human (`route_human`). `GateDecision` raises if that step is stopped or sent anywhere else.
-- On an agent tool loop, a low score stops the loop, so a bad tool result is not retried until the cap.
+- There is no REJECT action. On a person-facing step a low score can only route to a human (`route_human`). `GateDecision` raises if that step is stopped or sent anywhere else. When the action is `route_human`, `defer_reason` says why, for example `low_confidence: top=small_model p=0.69 < 0.8`. A confident human pick is `model_choice: top=human p=0.95 >= 0.8`. Every other action leaves `defer_reason` as `None`. Logging that reason is an idea from Noah Solace (roiscale.ai).
+- On an agent tool loop, a low score stops the loop. A bad tool result does not get retried until the cap.
 - On retrieved memory, a low score flags the memory.
 
 The numbers below are one small local CPU test. I would not ship the router at 0.8. See [Known limits](#known-limits).
@@ -176,7 +176,7 @@ That downloads `data/bitext.csv`, checks the sha256 in `gate/data.py`, draws 50 
 ## How to read results/
 
 - `results/summary.json` — headline counts, seeded-case scores, `monday_copyable_jobs`, and the `run` block. Start here.
-- `results/results.csv` — one row per decision. 237 data rows. `gate_signal_type` is `stop` or `route`. `action` is `continue`, `stop`, `route_small`, `route_frontier`, or `route_human`. On router rows, `route_reason` says whether a human route was a confident pick or a fallback. On the error-entry rows, `caught_by` is `error_scanner`, `error_scanner+score`, `score_only`, or `none`. A score is a stop or route label. It is not a check that a sentence is true (`orion_review.grounding_check_present` is false).
+- `results/results.csv` — one row per decision. 237 data rows. `gate_signal_type` is `stop` or `route`. `action` is `continue`, `stop`, `route_small`, `route_frontier`, or `route_human`. On router rows, `route_reason` says whether a human route was a confident pick or a fallback. On the error-entry rows, `caught_by` is `error_scanner`, `error_scanner+score`, `score_only`, or `none`. A score is a stop or route label. It is not a check that a sentence is true (`orion_review.grounding_check_present` is false). `defer_reason` is on the `GateDecision` object, not a new column in this file.
 - `results/transcripts.jsonl` — ungated chat replies for the seeded cases, so you can see what the regex judged.
 - `results/sample_tickets.csv` — the 50 tickets (Bitext row id, category, intent, instruction).
 - `results/charts/01_tokens_time_chat_vs_gate.png` — tokens and wall time.
@@ -205,6 +205,21 @@ There is no reject, deny, or decline action. Stopping a person-facing step would
 The gate labels stop or route. It leaves claim-checking to a person.
 
 A different Ollama build, a different model tag, or a different machine will give different wall times, and it can give different scores.
+
+## Module map
+
+- `gate/types.py` — `GateDecision`, including `defer_reason`.
+- `gate/gates.py` — stop, scope, memory, triage, intent.
+- `gate/policy.py` — turns a score into an action.
+- `gate/checks.py` — the regex error scanner and the chat-prose parsers.
+- `gate/seeds.py` — synthetic rows, including the four error-entry cases and the poisoned-memory seeds.
+- `gate/data.py` — Bitext download, sha256, and the stratified sample.
+- `gate/client.py` — Ollama HTTP. Host from `OLLAMA_HOST_URL`, default `http://127.0.0.1:11434`.
+- `gate/sweep.py` — the threshold sweep.
+- `jobs/*.json` — the four job configs. `run.py` is the runner.
+- `scripts/fetch_bitext_sample.py` — download and sample check.
+- `scripts/threshold_sweep.py` — print the sweep table.
+- `article/build_article.py` — `make article` writes a docx from the shipped results. Optional.
 
 ## License
 
