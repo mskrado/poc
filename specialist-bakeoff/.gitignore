@@ -1,0 +1,5 @@
+.venv/
+ckpt/
+harness/ckpt/
+harness/out/*-preds.jsonl
+harness/out/*-sweep.json

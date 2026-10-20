@@ -1,0 +1,10 @@
+# Optional. Not needed for `make baseline`.
+# Qwen needs a CUDA GPU. Opus needs ANTHROPIC_API_KEY and --i-have-approval.
+-r requirements.txt
+anthropic>=0.39
+torch>=2.5
+transformers>=4.57
+trl>=0.24
+peft>=0.17
+datasets
+accelerate

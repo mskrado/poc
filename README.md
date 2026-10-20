@@ -13,5 +13,6 @@ Proof-of-concept projects — small, self-contained experiments that support art
 | [`decision-gate/`](decision-gate/) | [I Triaged 50 Support Tickets Twice. The Gate Was 2.6× Faster, and I Still Wouldn't Ship the Router.](decision-gate/README.md) |
 | [`copilot-two-arm/`](copilot-two-arm/) | A two-arm harness timing AI vs no-AI work on a greenfield HTTP server and a seeded bug in inflection 0.5.1 (see the README) |
 | [`delivery-readiness-check/`](delivery-readiness-check/) | A scored review / rollback / measurement check for AI coding pilots, plus a change-fail-rate and lead-time script (see the README) |
+| [`specialist-bakeoff/`](specialist-bakeoff/) | Banking77 intent bake-off: a CPU TF-IDF baseline you can rerun (91.0% test), plus unrun Qwen LoRA and Claude Opus arms (see the README) |
 
 Each subdirectory is runnable on its own. See its README for setup and test commands.
