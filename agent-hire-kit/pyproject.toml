@@ -1,0 +1,13 @@
+[project]
+name = "agent-hire-kit"
+version = "26.10.31"
+description = "Agent Hire Kit v26.10.31: synthetic contention harness plus author sections. Not an agent benchmark and not a listing."
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[tool.setuptools]
+packages = ["contention"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -14,5 +14,6 @@ Proof-of-concept projects — small, self-contained experiments that support art
 | [`copilot-two-arm/`](copilot-two-arm/) | A two-arm harness timing AI vs no-AI work on a greenfield HTTP server and a seeded bug in inflection 0.5.1 (see the README) |
 | [`delivery-readiness-check/`](delivery-readiness-check/) | A scored review / rollback / measurement check for AI coding pilots, plus a change-fail-rate and lead-time script (see the README) |
 | [`specialist-bakeoff/`](specialist-bakeoff/) | Banking77 intent bake-off: a CPU TF-IDF baseline you can rerun (91.0% test), plus unrun Qwen LoRA and Claude Opus arms (see the README) |
+| [`agent-hire-kit/`](agent-hire-kit/) | Agent Hire Kit v26.10.31 (PF-20261031-fewer-people-more-agents): contention harness, payback calculator, isolation checklist, buyout worksheet, and job spec. Not a listing. |
 
 Each subdirectory is runnable on its own. See its README for setup and test commands.
