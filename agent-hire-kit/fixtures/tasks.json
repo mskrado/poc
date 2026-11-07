@@ -1,0 +1,191 @@
+{
+  "label": "SYNTHETIC CONTENTION SIMULATION",
+  "note": "Invented SKUs SYN-01 through SYN-10. No customer data, credentials, or real user files. The harness does not use the network.",
+  "shared_path": "shared/counter.json",
+  "initial_counter": {
+    "total": 0,
+    "owners": []
+  },
+  "tasks": [
+    {
+      "task_id": "t01",
+      "worker_id": "w01",
+      "record": "records/w01.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-01",
+        "qty": 1,
+        "unit_cents": 100,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-01",
+        "qty": 1,
+        "unit_cents": 100,
+        "extended_cents": 100
+      }
+    },
+    {
+      "task_id": "t02",
+      "worker_id": "w02",
+      "record": "records/w02.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-02",
+        "qty": 2,
+        "unit_cents": 125,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-02",
+        "qty": 2,
+        "unit_cents": 125,
+        "extended_cents": 250
+      }
+    },
+    {
+      "task_id": "t03",
+      "worker_id": "w03",
+      "record": "records/w03.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-03",
+        "qty": 3,
+        "unit_cents": 150,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-03",
+        "qty": 3,
+        "unit_cents": 150,
+        "extended_cents": 450
+      }
+    },
+    {
+      "task_id": "t04",
+      "worker_id": "w04",
+      "record": "records/w04.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-04",
+        "qty": 4,
+        "unit_cents": 175,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-04",
+        "qty": 4,
+        "unit_cents": 175,
+        "extended_cents": 700
+      }
+    },
+    {
+      "task_id": "t05",
+      "worker_id": "w05",
+      "record": "records/w05.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-05",
+        "qty": 5,
+        "unit_cents": 200,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-05",
+        "qty": 5,
+        "unit_cents": 200,
+        "extended_cents": 1000
+      }
+    },
+    {
+      "task_id": "t06",
+      "worker_id": "w06",
+      "record": "records/w06.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-06",
+        "qty": 6,
+        "unit_cents": 225,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-06",
+        "qty": 6,
+        "unit_cents": 225,
+        "extended_cents": 1350
+      }
+    },
+    {
+      "task_id": "t07",
+      "worker_id": "w07",
+      "record": "records/w07.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-07",
+        "qty": 7,
+        "unit_cents": 250,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-07",
+        "qty": 7,
+        "unit_cents": 250,
+        "extended_cents": 1750
+      }
+    },
+    {
+      "task_id": "t08",
+      "worker_id": "w08",
+      "record": "records/w08.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-08",
+        "qty": 8,
+        "unit_cents": 275,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-08",
+        "qty": 8,
+        "unit_cents": 275,
+        "extended_cents": 2200
+      }
+    },
+    {
+      "task_id": "t09",
+      "worker_id": "w09",
+      "record": "records/w09.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-09",
+        "qty": 9,
+        "unit_cents": 300,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-09",
+        "qty": 9,
+        "unit_cents": 300,
+        "extended_cents": 2700
+      }
+    },
+    {
+      "task_id": "t10",
+      "worker_id": "w10",
+      "record": "records/w10.json",
+      "op": "extend_line",
+      "initial": {
+        "sku": "SYN-10",
+        "qty": 10,
+        "unit_cents": 325,
+        "extended_cents": null
+      },
+      "expected": {
+        "sku": "SYN-10",
+        "qty": 10,
+        "unit_cents": 325,
+        "extended_cents": 3250
+      }
+    }
+  ]
+}

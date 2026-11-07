@@ -1,0 +1,5 @@
+SYNTHETIC CONTENTION SIMULATION
+
+tasks.json is an invented 10-row fixture. SKUs are SYN-01 through SYN-10.
+There are no customer records, credentials, personal files, or network calls in this directory.
+The workers that read it are scripted functions, not AI agents.
