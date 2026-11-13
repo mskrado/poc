@@ -1,0 +1,168 @@
+{
+ "allbirds.com": {
+  "product_url": "https://www.allbirds.com/products/mens-tree-runner-nz-medium-grey",
+  "category_url": "https://www.allbirds.com/collections/bfcm-mens",
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 49
+ },
+ "gymshark.com": {
+  "product_url": "https://www.gymshark.com/products/gymshark-softsense-leggings-leggings-brown-aw26",
+  "category_url": "https://www.gymshark.com/collections/new-releases/womens",
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 213
+ },
+ "bombas.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "robots.txt unreadable (error, 5xx, 401/403/429 or HTML), so the kit does not crawl",
+  "robots_status": "unreadable"
+ },
+ "taylorstitch.com": {
+  "product_url": "https://www.taylorstitch.com/products/corp-jacket-in-heather-olive-wool-2611",
+  "category_url": "https://www.taylorstitch.com/collections/mens-new-arrivals",
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 112
+ },
+ "outdoorvoices.com": {
+  "product_url": "https://www.outdoorvoices.com/products/w-doing-things-bra-darkbay-polka-dot",
+  "category_url": "https://www.outdoorvoices.com/collections/w-new-arrivals",
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 94
+ },
+ "kith.com": {
+  "product_url": "https://kith.com/products/khla150154-841",
+  "category_url": "https://kith.com/collections/kith-winter-2026",
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 414
+ },
+ "fashionnova.com": {
+  "product_url": "https://www.fashionnova.com/products/00-inferno-layered-mesh-jersey",
+  "category_url": "https://www.fashionnova.com/en-fi/collections/new?division=women",
+  "home_status": 200,
+  "method": "product from sitemap",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 61
+ },
+ "bambooclothing.co.uk": {
+  "product_url": "https://bambooclothing.co.uk/products/threads-purple-sock-day",
+  "category_url": "https://bambooclothing.co.uk/collections/womens-bamboo-clothing",
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 213
+ },
+ "phillipsshirts.com.au": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "robots.txt disallows this kit's UA on homepage",
+  "robots_status": "ok"
+ },
+ "brotherlove.ba": {
+  "product_url": "https://brotherlove.ba/proizvod/zastava-rbih-ljiljani/",
+  "category_url": "https://brotherlove.ba/product-category/majice/",
+  "home_status": 200,
+  "method": "product from sitemap",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 34
+ },
+ "cabinstreet.ca": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": true,
+  "home_links": 0
+ },
+ "spokeapparel.com": {
+  "product_url": "https://spokeapparel.com/products/stickers",
+  "category_url": null,
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 19
+ },
+ "patagonia.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "robots.txt unreadable (error, 5xx, 401/403/429 or HTML), so the kit does not crawl",
+  "robots_status": "unreadable"
+ },
+ "levi.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 403,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 0
+ },
+ "uniqlo.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "robots.txt unreadable (error, 5xx, 401/403/429 or HTML), so the kit does not crawl",
+  "robots_status": "unreadable"
+ },
+ "hm.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "robots.txt unreadable (error, 5xx, 401/403/429 or HTML), so the kit does not crawl",
+  "robots_status": "unreadable"
+ },
+ "zara.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "robots.txt unreadable (error, 5xx, 401/403/429 or HTML), so the kit does not crawl",
+  "robots_status": "unreadable"
+ },
+ "gap.com": {
+  "product_url": "https://www.gap.com/browse/product.do?pid=1188295092&mlink=1,1,HP_MERCH_VDN_CashSoftRollneckSweater_IMAGE",
+  "category_url": "https://www.gap.com/browse/women/shop-all-styles?cid=1127938&mlink=55277,1,globalbanner_HP_1",
+  "home_status": 200,
+  "method": "homepage links",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 19
+ },
+ "nike.com": {
+  "product_url": "https://www.nike.com/at/t/24-7-schuh-herren-Em66hLba",
+  "category_url": "https://www.nike.com/fi/w/new-3n82y",
+  "home_status": 200,
+  "method": "product from sitemap",
+  "robots_status": "ok",
+  "home_challenge": false,
+  "home_links": 305
+ },
+ "adidas.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "robots.txt unreadable (error, 5xx, 401/403/429 or HTML), so the kit does not crawl",
+  "robots_status": "unreadable"
+ }
+}

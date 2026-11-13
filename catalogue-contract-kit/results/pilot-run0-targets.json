@@ -1,0 +1,125 @@
+{
+ "allbirds.com": {
+  "product_url": "https://www.allbirds.com/products/mens-tree-runner-nz-medium-grey",
+  "category_url": "https://www.allbirds.com/collections/bfcm-mens",
+  "home_status": 200,
+  "method": "homepage links"
+ },
+ "gymshark.com": {
+  "product_url": "https://www.gymshark.com/products/gymshark-softsense-leggings-leggings-brown-aw26",
+  "category_url": "https://www.gymshark.com/collections/new-releases/womens",
+  "home_status": 200,
+  "method": "homepage links"
+ },
+ "bombas.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 429,
+  "method": "homepage links"
+ },
+ "taylorstitch.com": {
+  "product_url": "https://www.taylorstitch.com/products/corp-jacket-in-heather-olive-wool-2611",
+  "category_url": "https://www.taylorstitch.com/collections/mens-new-arrivals",
+  "home_status": 200,
+  "method": "homepage links"
+ },
+ "outdoorvoices.com": {
+  "product_url": "https://www.outdoorvoices.com/products/w-doing-things-bra-darkbay-polka-dot",
+  "category_url": "https://www.outdoorvoices.com/collections/w-new-arrivals",
+  "home_status": 200,
+  "method": "homepage links"
+ },
+ "kith.com": {
+  "product_url": "https://kith.com/products/khla150154-841",
+  "category_url": "https://kith.com/collections/kith-winter-2026",
+  "home_status": 200,
+  "method": "homepage links"
+ },
+ "fashionnova.com": {
+  "product_url": "https://www.fashionnova.com/products/00-inferno-layered-mesh-jersey",
+  "category_url": "https://www.fashionnova.com/en-fi/pages/men",
+  "home_status": 200,
+  "method": "product from sitemap"
+ },
+ "bambooclothing.co.uk": {
+  "product_url": "https://bambooclothing.co.uk/products/threads-purple-sock-day",
+  "category_url": "https://bambooclothing.co.uk/collections/womens-bamboo-clothing",
+  "home_status": 200,
+  "method": "homepage links"
+ },
+ "phillipsshirts.com.au": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "robots.txt disallows this kit's UA on homepage"
+ },
+ "brotherlove.ba": {
+  "product_url": "https://brotherlove.ba/proizvod/zastava-rbih-ljiljani/",
+  "category_url": "https://brotherlove.ba/product-category/majice/",
+  "home_status": 200,
+  "method": "product from sitemap"
+ },
+ "cabinstreet.ca": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 200,
+  "method": "homepage 200 but a challenge page ('One moment, please...'); sitemap 403",
+  "home_challenge": true
+ },
+ "spokeapparel.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 200,
+  "method": "discovery found only /products/youth (a listing, not a product page); homepage served a challenge page ('One moment, please...') on a re-check",
+  "home_challenge": true
+ },
+ "patagonia.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 200,
+  "method": "homepage 200 but a 3.3 KB page with no links (challenge/JS shell); sitemap gave no product URL",
+  "home_challenge": true
+ },
+ "levi.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 403,
+  "method": "homepage links"
+ },
+ "uniqlo.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": null,
+  "method": "homepage links"
+ },
+ "hm.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 403,
+  "method": "homepage links"
+ },
+ "zara.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 403,
+  "method": "homepage links"
+ },
+ "gap.com": {
+  "product_url": "https://www.gap.com/browse/product.do?pid=1188295092&mlink=1,1,HP_MERCH_VDN_CashSoftRollneckSweater_IMAGE",
+  "category_url": "https://www.gap.com/browse/women/shop-all-styles?cid=1127938&mlink=55277,1,globalbanner_HP_1",
+  "home_status": 200,
+  "method": "homepage links"
+ },
+ "nike.com": {
+  "product_url": "https://www.nike.com/at/t/24-7-schuh-herren-Em66hLba",
+  "category_url": "https://www.nike.com/fi/w/new-3n82y",
+  "home_status": 200,
+  "method": "product from sitemap"
+ },
+ "adidas.com": {
+  "product_url": null,
+  "category_url": null,
+  "home_status": 403,
+  "method": "homepage links"
+ }
+}

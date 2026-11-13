@@ -1,0 +1,8 @@
+User-agent: OAI-SearchBot
+Disallow: /products/
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: *
+Disallow: /cart

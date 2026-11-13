@@ -1,0 +1,8 @@
+requests==2.34.2
+beautifulsoup4==4.15.0
+soupsieve==4.1
+Protego==0.7.0
+pytest==9.2.0
+urllib3==2.8.0
+# chart only
+matplotlib==3.11.2
