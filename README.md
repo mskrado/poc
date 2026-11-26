@@ -16,5 +16,6 @@ Proof-of-concept projects — small, self-contained experiments that support art
 | [`specialist-bakeoff/`](specialist-bakeoff/) | Banking77 intent bake-off: a CPU TF-IDF baseline you can rerun (91.0% test), plus unrun Qwen LoRA and Claude Opus arms (see the README) |
 | [`catalogue-contract-kit/`](catalogue-contract-kit/) | Six pytest checks of what a shopping agent reads in a store catalogue (robots.txt, raw-HTML text and price, Product JSON-LD, category links, unfamiliar-crawler access), with local fixture stores and a two-run scan of 20 apparel stores (see the README) |
 | [`agent-hire-kit/`](agent-hire-kit/) | Agent Hire Kit v26.10.31 (PF-20261031-fewer-people-more-agents): contention harness, payback calculator, isolation checklist, buyout worksheet, and job spec. Not a listing. |
+| [`holdout-harness/`](holdout-harness/) | Split-route and booking-cohort holdout harness (0.1.0, MIT): salted SHA-256 market bucketing, spillover guards, CUPED, bootstrap CIs, power/MDE helpers, and synthetic test data (see the README) |
 
 Each subdirectory is runnable on its own. See its README for setup and test commands.

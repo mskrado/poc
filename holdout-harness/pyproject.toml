@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "holdout-harness"
+version = "0.1.0"
+description = "Split-route and booking-cohort holdout harness for AI pricing/booking flows (demo runs on synthetic test data)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+chart = ["matplotlib>=3.7"]
+test = ["pytest>=7"]
+
+[project.scripts]
+holdout-harness = "holdout_harness.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
